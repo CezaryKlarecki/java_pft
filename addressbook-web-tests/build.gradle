@@ -1,6 +1,5 @@
 apply plugin: 'java'
-apply plugin: 'application'
-mainClassName = "my.pkg.MyFirstProgram"
+
 
 repositories {
 
@@ -9,7 +8,7 @@ repositories {
 dependencies {
 
     implementation 'org.testng:testng:7.4.0'
-
+    implementation 'org.seleniumhq.selenium:selenium-java:4.0.0-beta-3'
 
 }
 test {
