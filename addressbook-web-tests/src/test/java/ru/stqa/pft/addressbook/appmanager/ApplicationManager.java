@@ -9,7 +9,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 public class ApplicationManager {
+
   WebDriver wd;
+
+  private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
 
   public void init() {
@@ -17,6 +20,7 @@ public class ApplicationManager {
     wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     wd.get("http://localhost:8080/addressbook/");
     groupHelper = new GroupHelper(wd);
+    navigationHelper = new NavigationHelper(wd);
     login("admin", "secret");
   }
 
@@ -35,12 +39,9 @@ public class ApplicationManager {
   private void logout() { wd.findElement(By.linkText("Logout")).click();
   }
 
-  public void goToGroupPage() {
-    wd.findElement(By.linkText("groups")).click();
-  }
-
   public void stop() {
     logout();
+
     wd.quit();
   }
 
@@ -65,5 +66,9 @@ public class ApplicationManager {
 
   public GroupHelper getGroupHelper() {
     return groupHelper;
+  }
+
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
   }
 }
