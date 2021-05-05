@@ -7,8 +7,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 public class ApplicationManager {
-
   private WebDriver wd;
+  private ContractHelper contractHelper;
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
@@ -21,19 +21,18 @@ public class ApplicationManager {
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login("admin", "secret");
+    contractHelper = new ContractHelper(wd);
   }
 
 
-  private void logout() { wd.findElement(By.linkText("Logout")).click();
+  public void logout() {
+    wd.findElement(By.linkText("Logout")).click();
   }
 
   public void stop() {
     logout();
-
     wd.quit();
   }
-
-
 
 
   public GroupHelper getGroupHelper() {
@@ -42,5 +41,13 @@ public class ApplicationManager {
 
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
+  }
+
+  public SessionHelper getSessionHelper() {
+    return sessionHelper;
+  }
+
+  public ContractHelper getContractHelper() {
+    return contractHelper;
   }
 }
