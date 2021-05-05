@@ -29,4 +29,16 @@ public class ContractHelper extends HelperBase {
   public void initCreateContract() {
     click(By.linkText("add new"));
   }
+
+  public void selectContract() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
+  }
+
+  public void initContractModification() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  }
+
+  public void submitContractModification() {
+    click(By.xpath("//div[@id='content']/form/input[22]"));
+  }
 }
