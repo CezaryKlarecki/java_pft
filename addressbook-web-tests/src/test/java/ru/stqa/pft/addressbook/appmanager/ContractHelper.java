@@ -41,4 +41,13 @@ public class ContractHelper extends HelperBase {
   public void submitContractModification() {
     click(By.xpath("//div[@id='content']/form/input[22]"));
   }
+
+  public void initContractDeletion() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+  }
+
+  public void submitContractDeletion() {
+    wd.switchTo().alert().accept();
+  }
+
 }
