@@ -1,21 +1,20 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.*;
+import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
-public class TestBase {
+public class ApplicationManager {
   private WebDriver wd;
 
-  @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void init() {
     wd = new FirefoxDriver();
-    wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     wd.get("http://localhost:8080/addressbook/");
     login("admin", "secret");
   }
@@ -36,16 +35,16 @@ public class TestBase {
     wd.findElement(By.linkText("Logout")).click();
   }
 
-  protected void returnToGroupPage() {
+  public void returnToGroupPage() {
     wd.findElement(By.xpath("//div[@id='content']/div")).click();
     wd.findElement(By.linkText("group page")).click();
   }
 
-  protected void submitGroupCreation() {
+  public void submitGroupCreation() {
     wd.findElement(By.name("submit")).click();
   }
 
-  protected void fillGroupForm(GroupData groupData) {
+  public void fillGroupForm(GroupData groupData) {
     wd.findElement(By.name("group_name")).click();
     wd.findElement(By.name("group_name")).clear();
     wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
@@ -57,19 +56,25 @@ public class TestBase {
     wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
   }
 
-  protected void initGroupCreation() {
+  public void initGroupCreation() {
     wd.findElement(By.name("new")).click();
   }
 
-  protected void goToGroupPage() {
+  public void goToGroupPage() {
     wd.findElement(By.linkText("groups")).click();
   }
 
-  @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
+  public void stop() {
     logout();
     wd.quit();
+  }
 
+  public void deleteSelectedGroups() {
+    wd.findElement(By.name("delete")).click();
+  }
+
+  public void selectGroup() {
+    wd.findElement(By.name("selected[]")).click();
   }
 
   private boolean isElementPresent(By by) {
@@ -90,11 +95,5 @@ public class TestBase {
     }
   }
 
-  protected void deleteSelectedGroups() {
-    wd.findElement(By.name("delete")).click();
-  }
 
-  protected void selectGroup() {
-    wd.findElement(By.name("selected[]")).click();
-  }
 }
