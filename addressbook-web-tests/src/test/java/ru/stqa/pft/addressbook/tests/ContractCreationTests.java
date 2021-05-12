@@ -8,10 +8,8 @@ public class ContractCreationTests extends TestBase {
   @Test
   public void testContractCreation() throws Exception {
 
-    app.getContractHelper().initCreateContract();
-    app.getContractHelper().fillContractForm(new ContractData("Cezary", "Klarecki", "696995552", "cezary.klarecki@gmail.com", "test1"),true);
-    app.getContractHelper().submitContractCreation();
-    app.getContractHelper().returnToHomePage();
+    app.getContractHelper().createContract (new ContractData("Cezary", "Klarecki", "696995552", "cezary.klarecki@gmail.com", "test1"));
+
 
   }
 

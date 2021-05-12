@@ -58,4 +58,14 @@ public class ContractHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
+  public boolean isThereAContract() {
+    return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
+  }
+
+  public void createContract(ContractData contract) {
+   initCreateContract();
+    fillContractForm(contract, true);
+   submitContractCreation();
+    returnToHomePage();
+  }
 }
