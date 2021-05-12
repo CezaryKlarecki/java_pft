@@ -9,7 +9,7 @@ public class ContractCreationTests extends TestBase {
   public void testContractCreation() throws Exception {
 
     app.getContractHelper().initCreateContract();
-    app.getContractHelper().fillFirstnameField(new ContractData("Cezary", "Klarecki", "696995552", "cezary.klarecki@gmail.com"));
+    app.getContractHelper().fillContractForm(new ContractData("Cezary", "Klarecki", "696995552", "cezary.klarecki@gmail.com", "test1"),true);
     app.getContractHelper().submitContractCreation();
     app.getContractHelper().returnToHomePage();
 

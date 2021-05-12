@@ -2,7 +2,9 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContractData;
+import org.testng.*;
 
 public class ContractHelper extends HelperBase {
 
@@ -18,14 +20,20 @@ public class ContractHelper extends HelperBase {
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
-  public void fillFirstnameField(ContractData contractData) {
+  public void fillContractForm(ContractData contractData, boolean creation) {
 
     type(By.name("firstname"), contractData.getFirstname());
     type(By.name("lastname"), contractData.getLastname());
     type(By.name("home"), contractData.getHomephone());
     type(By.name("email"), contractData.getEmail());
-  }
+    if(creation){
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contractData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
 
+
+  }
   public void initCreateContract() {
     click(By.linkText("add new"));
   }
