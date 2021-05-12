@@ -23,9 +23,6 @@ public class HelperBase {
         wd.findElement(locator).sendKeys(text);
 
 
-
-
-
   }
 
   public boolean isElementPresent(By locator) {
