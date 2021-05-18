@@ -2,9 +2,14 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContractData;
 import org.testng.*;
+import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContractHelper extends HelperBase {
 
@@ -59,7 +64,7 @@ public class ContractHelper extends HelperBase {
   }
 
   public boolean isThereAContract() {
-    return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
+    return isElementPresent(By.name("selected[]"));
   }
 
   public void createContract(ContractData contract) {
@@ -71,5 +76,17 @@ public class ContractHelper extends HelperBase {
 
   public int getContractCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContractData> getContractList() {
+    List<ContractData> contracts = new ArrayList<ContractData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for(WebElement element : elements){
+      String firstname = element.getText();
+      String lastname = element.getText();
+      ContractData contract = new ContractData(firstname, lastname, null, null, null);
+      contracts.add(contract);
+    }
+    return contracts;
   }
 }
