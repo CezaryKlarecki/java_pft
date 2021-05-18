@@ -14,7 +14,7 @@ public class ContractDeletionTests extends TestBase {
       app.getContractHelper().createContract(new ContractData("Cezary", "Klarecki", "696995552", "cezary.klarecki@gmail.com", "test1"));
 
     }
-    app.getContractHelper().selectContract();
+    app.getContractHelper().selectContract(before - 1);
     app.getContractHelper().initContractDeletion();
     app.getContractHelper().submitContractDeletion();
     app.getContractHelper().returnToHomePage();
