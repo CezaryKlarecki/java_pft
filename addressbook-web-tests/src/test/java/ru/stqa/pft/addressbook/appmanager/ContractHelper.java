@@ -13,7 +13,7 @@ public class ContractHelper extends HelperBase {
   }
 
   public void returnToHomePage() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr/th[3]"));
+    click(By.linkText("home"));
   }
 
   public void submitContractCreation() {
@@ -39,7 +39,7 @@ public class ContractHelper extends HelperBase {
   }
 
   public void selectContract() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
+    click(By.name("selected[]"));
   }
 
   public void initContractModification() {
@@ -67,5 +67,9 @@ public class ContractHelper extends HelperBase {
     fillContractForm(contract, true);
    submitContractCreation();
     returnToHomePage();
+  }
+
+  public int getContractCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
