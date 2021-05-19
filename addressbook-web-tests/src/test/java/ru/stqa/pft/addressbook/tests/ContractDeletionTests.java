@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContractData;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class ContractDeletionTests extends TestBase {
@@ -26,6 +27,9 @@ public class ContractDeletionTests extends TestBase {
 
 
     before.remove(before.size() - 1);
+    Comparator<? super ContractData> ById = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+    before.sort(ById);
+    after.sort(ById);
     Assert.assertEquals(before, after);
   }
 

@@ -84,7 +84,8 @@ public class ContractHelper extends HelperBase {
     for(WebElement element : elements){
       String firstname = element.getText();
       String lastname = element.getText();
-      ContractData contract = new ContractData(firstname, lastname, null, null, null);
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContractData contract = new ContractData(id, firstname, lastname, null, null, null);
       contracts.add(contract);
     }
     return contracts;
