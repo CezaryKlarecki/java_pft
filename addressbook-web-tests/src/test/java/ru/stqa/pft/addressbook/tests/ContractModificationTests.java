@@ -33,5 +33,5 @@ public class ContractModificationTests extends TestBase {
     Comparator<? super ContractData> ById = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
     before.sort(ById);
     after.sort(ById);
-    Assert.assertEquals(before.size(),after.size());  }
+    Assert.assertEquals(before,after);}
     }

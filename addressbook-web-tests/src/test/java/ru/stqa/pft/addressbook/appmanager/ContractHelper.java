@@ -80,11 +80,13 @@ public class ContractHelper extends HelperBase {
 
   public List<ContractData> getContractList() {
     List<ContractData> contracts = new ArrayList<ContractData>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for(WebElement element : elements){
-      String firstname = element.getText();
-      String lastname = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+    List<WebElement> rows = wd.findElements(By.name("entry"));
+    for(WebElement element : rows){
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String firstname = cells.get(1).getText();
+      String lastname = cells.get(2).getText();
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+   //   int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       ContractData contract = new ContractData(id, firstname, lastname, null, null, null);
       contracts.add(contract);
     }
