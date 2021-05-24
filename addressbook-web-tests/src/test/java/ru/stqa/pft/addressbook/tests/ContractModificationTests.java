@@ -18,8 +18,9 @@ public class ContractModificationTests extends TestBase {
       app.getContractHelper().createContract(new ContractData("Cezary", "Klarecki", "696995552", "cezary.klarecki@gmail.com", "test1"));
     }
     List<ContractData> before = app.getContractHelper().getContractList();
+
     app.getContractHelper().selectContract(before.size() - 1);
-    app.getContractHelper().initContractModification();
+    app.getContractHelper().initContractModification(before.size() - 1);
     ContractData contract = new ContractData(before.get(before.size() - 1).getId(), "Cezary7", "Klarecki7", "696995554", "cezarys.klarecki@gmail.com", "tests");
     app.getContractHelper().fillContractForm(contract, false);
     app.getContractHelper().submitContractModification();

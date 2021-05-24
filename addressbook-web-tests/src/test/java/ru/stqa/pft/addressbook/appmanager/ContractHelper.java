@@ -44,12 +44,17 @@ public class ContractHelper extends HelperBase {
   }
 
   public void selectContract(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+   wd.findElements(By.name("selected[]")).get(index).click();
+
   }
 
-  public void initContractModification() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-  }
+  public void initContractModification(int index) {
+
+    click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"));
+   // wd.findElements(By.xpath("//a/@href='edit.php?id=']")).get(index).click();
+    // click(By.xpath("//img[@alt='Edit']"));
+
+    }
 
   public void submitContractModification() {
     click(By.xpath("//div[@id='content']/form/input[22]"));
@@ -86,8 +91,7 @@ public class ContractHelper extends HelperBase {
       String firstname = cells.get(1).getText();
       String lastname = cells.get(2).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
-   //   int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContractData contract = new ContractData(id, firstname, lastname, null, null, null);
+      ContractData contract = new ContractData(id, lastname, firstname, null, null, null);
       contracts.add(contract);
     }
     return contracts;
