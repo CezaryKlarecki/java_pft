@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ContractDeletionTests extends TestBase {
 
-  @Test
+  @Test(enabled = false)
 
   public void testContractDeletion() {
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ContractCreationTests extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContractCreation() throws Exception {
     List<ContractData> before = app.getContractHelper().getContractList();
     ContractData contract = new ContractData("Cezary", "Klarecki", "696995552", "cezary.klarecki@gmail.com", "test1");
