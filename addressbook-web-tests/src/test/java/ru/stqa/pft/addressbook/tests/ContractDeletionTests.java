@@ -30,8 +30,8 @@ public class ContractDeletionTests extends TestBase {
     Contracts before = app.contract().all();
     ContractData deletedContract = before.iterator().next();
     app.contract().delete(deletedContract);
+    assertEquals(app.contract().count(), before.size() - 1);
     Contracts after = app.contract().all();
-    assertEquals(after.size(), before.size() - 1);
     assertThat(after, equalTo(before.without(deletedContract)));
   }
 }

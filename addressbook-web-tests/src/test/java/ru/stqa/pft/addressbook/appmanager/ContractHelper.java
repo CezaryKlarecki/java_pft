@@ -119,7 +119,7 @@ public class ContractHelper extends HelperBase {
 
   }
 
-  public int getContractCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 

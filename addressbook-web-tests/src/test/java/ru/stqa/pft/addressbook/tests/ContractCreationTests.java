@@ -22,9 +22,8 @@ public class ContractCreationTests extends TestBase {
     Contracts before = app.contract().all();
     ContractData contract = new ContractData().withLastname("Cezary").withFirstname("Klarecki").withHomephone("6969955522").withEmail("ck@fh.pl").withGroup("[none]");
     app.contract().create(contract);
+    assertThat(app.contract().count(), equalTo(before.size() + 1));
     Contracts after = app.contract().all();
-    assertThat(after.size(), equalTo(before.size() + 1));
-
     assertThat(after, equalTo(
             before.withAdded(contract.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }

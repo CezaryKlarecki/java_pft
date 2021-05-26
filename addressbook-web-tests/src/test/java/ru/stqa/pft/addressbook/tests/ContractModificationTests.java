@@ -32,8 +32,8 @@ public class ContractModificationTests extends TestBase {
             .withId(modifiedContract.getId()).withLastname("Klareckii").withFirstname("Cezary 5")
             .withHomephone("6969955522").withEmail("ck@fh.pl").withGroup("[none]");
     app.contract().modify(contract);
+    assertEquals(app.contract().count(), before.size());
     Contracts after = app.contract().all();
-    assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.without(modifiedContract).withAdded(contract)));
   }
 
