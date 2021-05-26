@@ -7,18 +7,15 @@ import org.testng.*;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
-
 import java.util.Set;
 import java.util.regex.Matcher;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
-
 public class GroupCreationTests extends TestBase {
 
 
-  @Test
+  @Test(enabled = false)
   public void testGroupCreation() throws Exception {
 
 

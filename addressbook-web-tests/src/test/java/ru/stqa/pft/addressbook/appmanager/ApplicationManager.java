@@ -63,7 +63,7 @@ public class ApplicationManager {
     return sessionHelper;
   }
 
-  public ContractHelper getContractHelper() {
+  public ContractHelper contract() {
     return contractHelper;
   }
 }

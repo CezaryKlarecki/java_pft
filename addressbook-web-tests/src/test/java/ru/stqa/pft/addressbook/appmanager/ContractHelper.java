@@ -9,8 +9,9 @@ import org.testng.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 public class ContractHelper extends HelperBase {
 
   public ContractHelper(WebDriver wd) {
@@ -31,7 +32,7 @@ public class ContractHelper extends HelperBase {
     type(By.name("lastname"), contractData.getLastname());
     type(By.name("home"), contractData.getHomephone());
     type(By.name("email"), contractData.getEmail());
-    if(creation){
+    if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contractData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -39,22 +40,28 @@ public class ContractHelper extends HelperBase {
 
 
   }
+
   public void initCreateContract() {
     click(By.linkText("add new"));
   }
 
   public void selectContract(int index) {
-   wd.findElements(By.name("selected[]")).get(index).click();
+    wd.findElements(By.name("selected[]")).get(index).click();
 
   }
+  public void selectContractById(int id) {
 
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+
+  }
   public void initContractModification(int index) {
-
     click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"));
-   // wd.findElements(By.xpath("//a/@href='edit.php?id=']")).get(index).click();
-    // click(By.xpath("//img[@alt='Edit']"));
+  }
 
-    }
+  public void initContractModificationById(int id) {
+        wd.findElement(By.cssSelector("a[@href='view.php?id=" + id + "']")).click();
+
+  }
 
   public void submitContractModification() {
     click(By.xpath("//div[@id='content']/form/input[22]"));
@@ -72,10 +79,32 @@ public class ContractHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void createContract(ContractData contract) {
-   initCreateContract();
+  public void create(ContractData contract) {
+    initCreateContract();
     fillContractForm(contract, true);
-   submitContractCreation();
+    submitContractCreation();
+    returnToHomePage();
+  }
+
+  public void modify(ContractData contract) {
+    selectContractById(contract.getId());
+    initContractModificationById(contract.getId());
+    fillContractForm(contract, false);
+    submitContractModification();
+    returnToHomePage();
+  }
+
+  public void delete(int index) {
+    selectContract(index);
+    initContractDeletion();
+    submitContractDeletion();
+    returnToHomePage();
+  }
+
+  public void delete(ContractData contract) {
+    selectContractById(contract.getId());
+    initContractDeletion();
+    submitContractDeletion();
     returnToHomePage();
   }
 
@@ -83,17 +112,31 @@ public class ContractHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContractData> getContractList() {
+  public List<ContractData> list() {
     List<ContractData> contracts = new ArrayList<ContractData>();
     List<WebElement> rows = wd.findElements(By.name("entry"));
-    for(WebElement element : rows){
+    for (WebElement element : rows) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
-      String firstname = cells.get(1).getText();
-      String lastname = cells.get(2).getText();
+      String firstname = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
-      ContractData contract = new ContractData(id, lastname, firstname, null, null, null);
-      contracts.add(contract);
+      contracts.add(new ContractData().withId(id).withLastname(lastname).withFirstname(firstname));
     }
     return contracts;
   }
+
+  public Set<ContractData> all() {
+    Set<ContractData> contracts = new HashSet<ContractData>();
+    List<WebElement> rows = wd.findElements(By.name("entry"));
+    for (WebElement element : rows) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String firstname = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      contracts.add(new ContractData().withId(id).withLastname(lastname).withFirstname(firstname));
+    }
+    return contracts;
+  }
+
+
 }
