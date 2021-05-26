@@ -60,7 +60,7 @@ public class ContractHelper extends HelperBase {
 
   public void initContractModificationById(int id) {
     //wd.findElement(By.cssSelector("css=a[href=view.php?id='" + id + "']")).click();
-    wd.findElement(By.xpath("a[@href='view.php?id=" + id + "']")).click();
+    wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
 
 
   }
