@@ -12,7 +12,7 @@ public class ContractDeletionTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    if (app.contract().list().size() == 0) {
+    if (app.contract().all().size() == 0) {
       app.contract().create(new ContractData().withFirstname("Cezary").withLastname("Klarecki"));
     }
   }

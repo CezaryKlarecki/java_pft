@@ -59,7 +59,9 @@ public class ContractHelper extends HelperBase {
   }
 
   public void initContractModificationById(int id) {
-        wd.findElement(By.cssSelector("a[@href='view.php?id=" + id + "']")).click();
+    //wd.findElement(By.cssSelector("css=a[href=view.php?id='" + id + "']")).click();
+    wd.findElement(By.xpath("a[@href='view.php?id=" + id + "']")).click();
+
 
   }
 
@@ -110,19 +112,6 @@ public class ContractHelper extends HelperBase {
 
   public int getContractCount() {
     return wd.findElements(By.name("selected[]")).size();
-  }
-
-  public List<ContractData> list() {
-    List<ContractData> contracts = new ArrayList<ContractData>();
-    List<WebElement> rows = wd.findElements(By.name("entry"));
-    for (WebElement element : rows) {
-      List<WebElement> cells = element.findElements(By.tagName("td"));
-      String firstname = cells.get(2).getText();
-      String lastname = cells.get(1).getText();
-      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
-      contracts.add(new ContractData().withId(id).withLastname(lastname).withFirstname(firstname));
-    }
-    return contracts;
   }
 
   public Set<ContractData> all() {
