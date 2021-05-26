@@ -63,13 +63,13 @@ public class ContractData {
     return lastname;
   }
 
-  public String getHome() {
+  public String getHomePhone() {
     return home;
   }
-  public String getMobile() {
+  public String getMobilePhone() {
     return mobile;
   }
-  public String getWork() {
+  public String getWorkPhone() {
     return work;
   }
 
