@@ -27,5 +27,12 @@ public class NavigationHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/div"));
     click(By.linkText("group page"));
 }
+  public void goToHomePage() {
+
+    if (isElementPresent(By.name("MainForm"))){
+      return;
+    }
+    click(By.linkText("home"));
+  }
 }
 

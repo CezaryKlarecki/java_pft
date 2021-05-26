@@ -1,12 +1,15 @@
 package ru.stqa.pft.addressbook.model;
 
 import java.util.Objects;
+import java.util.PrimitiveIterator;
 
 public class ContractData {
   private int id = Integer.MAX_VALUE;
   private String firstname;
   private String lastname;
-  private String homephone;
+  private String home;
+  private String mobile;
+  private String work;
   private String email;
   private String group;
 
@@ -26,11 +29,18 @@ public class ContractData {
     return this;
   }
 
-  public ContractData withHomephone(String homephone) {
-    this.homephone = homephone;
+  public ContractData withHomePhone(String home) {
+    this.home = home;
     return this;
   }
-
+  public ContractData withMobilePhone(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+  public ContractData withWorkPhone(String work) {
+    this.work = work;
+    return this;
+  }
   public ContractData withEmail(String email) {
     this.email = email;
     return this;
@@ -53,8 +63,14 @@ public class ContractData {
     return lastname;
   }
 
-  public String getHomephone() {
-    return homephone;
+  public String getHome() {
+    return home;
+  }
+  public String getMobile() {
+    return mobile;
+  }
+  public String getWork() {
+    return work;
   }
 
   public String getEmail() {
@@ -64,6 +80,8 @@ public class ContractData {
   public String getGroup() {
     return group;
   }
+
+
 
   @Override
   public String toString() {
@@ -86,4 +104,9 @@ public class ContractData {
   public int hashCode() {
     return Objects.hash(id, firstname, lastname);
   }
-}
+
+
+
+
+  }
+
