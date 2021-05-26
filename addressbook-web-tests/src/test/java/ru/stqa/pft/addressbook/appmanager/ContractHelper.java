@@ -87,6 +87,8 @@ public class ContractHelper extends HelperBase {
     fillContractForm(contract, true);
     submitContractCreation();
     returnToHomePage();
+    contractCache = null;
+
   }
 
   public void modify(ContractData contract) {
@@ -95,6 +97,8 @@ public class ContractHelper extends HelperBase {
     fillContractForm(contract, false);
     submitContractModification();
     returnToHomePage();
+    contractCache = null;
+
   }
 
   public void delete(int index) {
@@ -102,6 +106,8 @@ public class ContractHelper extends HelperBase {
     initContractDeletion();
     submitContractDeletion();
     returnToHomePage();
+
+
   }
 
   public void delete(ContractData contract) {
@@ -109,23 +115,30 @@ public class ContractHelper extends HelperBase {
     initContractDeletion();
     submitContractDeletion();
     returnToHomePage();
+    contractCache = null;
+
   }
 
   public int getContractCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  private Contracts contractCache = null;
+
   public Contracts all() {
-    Contracts contracts = new Contracts();
+    if(contractCache != null){
+      return new Contracts(contractCache);
+    }
+    contractCache = new Contracts();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement element : rows) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
-      contracts.add(new ContractData().withId(id).withLastname(lastname).withFirstname(firstname));
+      contractCache.add(new ContractData().withId(id).withLastname(lastname).withFirstname(firstname));
     }
-    return contracts;
+    return new Contracts(contractCache);
   }
 
 
