@@ -1,12 +1,19 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContractData;
+import ru.stqa.pft.addressbook.model.Contracts;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContractModificationTests extends TestBase {
 
@@ -19,20 +26,15 @@ public class ContractModificationTests extends TestBase {
 
   @Test
   public void testContractModification() {
-    Set<ContractData> before = app.contract().all();
+    Contracts before = app.contract().all();
     ContractData modifiedContract = before.iterator().next();
     ContractData contract = new ContractData()
             .withId(modifiedContract.getId()).withLastname("Klareckii").withFirstname("Cezary 5")
             .withHomephone("6969955522").withEmail("ck@fh.pl").withGroup("[none]");
     app.contract().modify(contract);
-    Set<ContractData> after = app.contract().all();
-    Assert.assertEquals(after.size(), before.size());
-
-
-
-    before.remove(modifiedContract);
-    before.add(contract);
-    Assert.assertEquals(before, after);
+    Contracts after = app.contract().all();
+    assertEquals(after.size(), before.size());
+    assertThat(after, equalTo(before.without(modifiedContract).withAdded(contract)));
   }
 
 

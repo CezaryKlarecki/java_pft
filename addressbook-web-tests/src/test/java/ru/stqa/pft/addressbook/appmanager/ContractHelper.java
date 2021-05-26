@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContractData;
 import org.testng.*;
+import ru.stqa.pft.addressbook.model.Contracts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
@@ -114,8 +115,8 @@ public class ContractHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public Set<ContractData> all() {
-    Set<ContractData> contracts = new HashSet<ContractData>();
+  public Contracts all() {
+    Contracts contracts = new Contracts();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement element : rows) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
