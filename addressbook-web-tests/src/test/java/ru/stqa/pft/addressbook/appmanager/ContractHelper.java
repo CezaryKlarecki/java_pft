@@ -49,22 +49,23 @@ public class ContractHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
 
   }
+
   public void selectContractById(int id) {
 
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
 
   }
+
   public void initContractModification(int index) {
     click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"));
   }
 
   public void initContractModificationById(int id) {
-  //  wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
-WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
-WebElement row =checkbox.findElement(By.xpath("./../.."));
-List<WebElement> cells = row.findElements(By.tagName("td"));
-cells.get(7).findElement(By.tagName("a")).click();
-
+    //  wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(7).findElement(By.tagName("a")).click();
 
 
   }
@@ -85,7 +86,7 @@ cells.get(7).findElement(By.tagName("a")).click();
     return isElementPresent(By.name("selected[]"));
   }
 
-  public ContractData infoFromEditForm(ContractData contract){
+  public ContractData infoFromEditForm(ContractData contract) {
     initContractModificationById(contract.getId());
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
@@ -93,11 +94,14 @@ cells.get(7).findElement(By.tagName("a")).click();
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
     String address = wd.findElement(By.name("address")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     //String address2 = wd.findElement(By.name("address2")).getAttribute("value");
     wd.navigate().back();
     return new ContractData().withId(
             contract.getId()).withFirstname(firstname).withLastname(lastname).
-            withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withPrimaryAddress(address);
+            withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withPrimaryAddress(address).withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 
   public void create(ContractData contract) {
@@ -144,7 +148,7 @@ cells.get(7).findElement(By.tagName("a")).click();
   private Contracts contractCache = null;
 
   public Contracts all() {
-    if(contractCache != null){
+    if (contractCache != null) {
       return new Contracts(contractCache);
     }
     contractCache = new Contracts();
@@ -156,8 +160,9 @@ cells.get(7).findElement(By.tagName("a")).click();
       String allPhones = cells.get(5).getText();
       String address = cells.get(3).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String allEmails = cells.get(4).getText();
       contractCache.add(new ContractData().
-              withId(id).withLastname(lastname).withFirstname(firstname).withAllPhones(allPhones).withPrimaryAddress(address));
+              withId(id).withLastname(lastname).withFirstname(firstname).withAllPhones(allPhones).withPrimaryAddress(address).withAllEmails(allEmails));
     }
     return new Contracts(contractCache);
   }

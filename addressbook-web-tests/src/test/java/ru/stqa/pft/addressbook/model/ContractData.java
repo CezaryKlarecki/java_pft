@@ -10,18 +10,31 @@ public class ContractData {
   private String home;
   private String mobile;
   private String work;
-  private String email;
   private String group;
   private String allPhones;
   private String allAddresses;
   private String primaryAddress;
   private String secondaryAddress;
+  private String email;
+  private String email2;
+  private String email3;
+  private String allEmails;
 
 
+  public ContractData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
 
+  public ContractData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
 
-
-
+  public ContractData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
 
   public ContractData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
@@ -37,6 +50,7 @@ public class ContractData {
     this.primaryAddress = primaryAddress;
     return this;
   }
+
   public ContractData withSecondaryAddress(String secondaryAddress) {
     this.secondaryAddress = secondaryAddress;
     return this;
@@ -61,14 +75,17 @@ public class ContractData {
     this.home = home;
     return this;
   }
+
   public ContractData withMobilePhone(String mobile) {
     this.mobile = mobile;
     return this;
   }
+
   public ContractData withWorkPhone(String work) {
     this.work = work;
     return this;
   }
+
   public ContractData withEmail(String email) {
     this.email = email;
     return this;
@@ -94,9 +111,11 @@ public class ContractData {
   public String getHomePhone() {
     return home;
   }
+
   public String getMobilePhone() {
     return mobile;
   }
+
   public String getWorkPhone() {
     return work;
   }
@@ -108,17 +127,33 @@ public class ContractData {
   public String getGroup() {
     return group;
   }
+
   public String getAllPhones() {
     return allPhones;
   }
+
   public String getAllAddresses() {
     return allAddresses;
   }
+
   public String getPrimaryAddress() {
     return primaryAddress;
   }
+
   public String getSecondaryAddress() {
     return secondaryAddress;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
   }
 
   @Override
@@ -142,9 +177,6 @@ public class ContractData {
   public int hashCode() {
     return Objects.hash(id, firstname, lastname);
   }
-
-
-
 
 
 }
