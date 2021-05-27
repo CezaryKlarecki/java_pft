@@ -10,38 +10,32 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContractPhoneTests extends TestBase{
+public class ContractAddressTests extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions() {
     if (app.contract().all().size() == 0) {
-      app.contract().create(new ContractData().withFirstname("Cezary")
-              .withLastname("Klarecki").withHomePhone("1111").withMobilePhone("222").withWorkPhone("3333"));
+      app.contract().create(new ContractData().withFirstname("Cezary").withLastname("Klarecki").withHomePhone("1111"));
     }
   }
-
-
   @Test
-  public void testContractPhones(){
+  public void testContractAddress(){
     app.goTo().goToHomePage();
     ContractData contract = app.contract().all().iterator().next();
     ContractData contractInfoFromEditForm = app.contract().infoFromEditForm(contract);
-    assertThat(contract.getAllPhones(), equalTo(mergePhones(contractInfoFromEditForm)));
-
+    assertThat(contract.getPrimaryAddress(), equalTo(contractInfoFromEditForm.getPrimaryAddress()));
   }
 
-  private String mergePhones(ContractData contract) {
-    return Arrays.asList(contract.getHomePhone(),contract.getMobilePhone(),contract.getWorkPhone())
+  private String mergeAdresses(ContractData contract) {
+    return Arrays.asList(contract.getPrimaryAddress(),contract.getSecondaryAddress())
             .stream().filter((s) -> ! s.equals(""))
-            .map(ContractPhoneTests::cleaned)
+            .map(ContractAddressTests::cleaned)
             .collect(Collectors.joining("\n"));
 
-    }
+  }
+  public static String cleaned(String address){
 
-
-  public static String cleaned(String phone){
-
-    return phone.replaceAll("\\s", "").replaceAll("[-()]","");
+    return address.replaceAll("\\s", "").replaceAll("[-()]","");
   }
 
 }

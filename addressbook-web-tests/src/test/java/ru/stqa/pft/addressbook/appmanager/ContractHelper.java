@@ -92,10 +92,12 @@ cells.get(7).findElement(By.tagName("a")).click();
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
+    //String address2 = wd.findElement(By.name("address2")).getAttribute("value");
     wd.navigate().back();
     return new ContractData().withId(
             contract.getId()).withFirstname(firstname).withLastname(lastname).
-            withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+            withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withPrimaryAddress(address);
   }
 
   public void create(ContractData contract) {
@@ -151,11 +153,11 @@ cells.get(7).findElement(By.tagName("a")).click();
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
-      String[] phones = cells.get(5).getText().split("\n");
+      String allPhones = cells.get(5).getText();
+      String address = cells.get(3).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       contractCache.add(new ContractData().
-              withId(id).withLastname(lastname).withFirstname(firstname).
-              withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+              withId(id).withLastname(lastname).withFirstname(firstname).withAllPhones(allPhones).withPrimaryAddress(address));
     }
     return new Contracts(contractCache);
   }

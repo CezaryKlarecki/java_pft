@@ -12,7 +12,35 @@ public class ContractData {
   private String work;
   private String email;
   private String group;
+  private String allPhones;
+  private String allAddresses;
+  private String primaryAddress;
+  private String secondaryAddress;
 
+
+
+
+
+
+
+  public ContractData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+  public ContractData withAllAddresses(String allAddresses) {
+    this.allAddresses = allAddresses;
+    return this;
+  }
+
+  public ContractData withPrimaryAddress(String primaryAddress) {
+    this.primaryAddress = primaryAddress;
+    return this;
+  }
+  public ContractData withSecondaryAddress(String secondaryAddress) {
+    this.secondaryAddress = secondaryAddress;
+    return this;
+  }
 
   public ContractData withId(int id) {
     this.id = id;
@@ -80,8 +108,18 @@ public class ContractData {
   public String getGroup() {
     return group;
   }
-
-
+  public String getAllPhones() {
+    return allPhones;
+  }
+  public String getAllAddresses() {
+    return allAddresses;
+  }
+  public String getPrimaryAddress() {
+    return primaryAddress;
+  }
+  public String getSecondaryAddress() {
+    return secondaryAddress;
+  }
 
   @Override
   public String toString() {
@@ -108,5 +146,6 @@ public class ContractData {
 
 
 
-  }
+
+}
 
