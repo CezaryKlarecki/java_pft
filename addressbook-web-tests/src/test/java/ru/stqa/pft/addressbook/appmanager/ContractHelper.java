@@ -32,6 +32,8 @@ public class ContractHelper extends HelperBase {
     type(By.name("mobile"), contractData.getMobilePhone());
     type(By.name("work"), contractData.getWorkPhone());
     type(By.name("email"), contractData.getEmail());
+    attach(By.name("photo"), contractData.getPhoto());
+
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contractData.getGroup());
     } else {
@@ -67,9 +69,15 @@ public class ContractHelper extends HelperBase {
     List<WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
 
+  }
+  public void initViewPageById(int id) {
+   // WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+   // WebElement row = checkbox.findElement(By.xpath("./../.."));
+   // List<WebElement> cells = row.findElements(By.tagName("td"));
+   // cells.get(6).findElement(By.tagName("a")).click();
+    wd.findElement(By.cssSelector("a[href='view.php?id=" + id + "']")).click();
 
   }
-
   public void submitContractModification() {
     click(By.xpath("//div[@id='content']/form/input[22]"));
   }
@@ -100,8 +108,8 @@ public class ContractHelper extends HelperBase {
     //String address2 = wd.findElement(By.name("address2")).getAttribute("value");
     wd.navigate().back();
     return new ContractData().withId(
-            contract.getId()).withFirstname(firstname).withLastname(lastname).
-            withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withPrimaryAddress(address).withEmail(email).withEmail2(email2).withEmail3(email3);
+            contract.getId()).withLastname(lastname).withFirstname(firstname).withPrimaryAddress(address)
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 
   public void create(ContractData contract) {
@@ -161,11 +169,15 @@ public class ContractHelper extends HelperBase {
       String address = cells.get(3).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String allEmails = cells.get(4).getText();
-      contractCache.add(new ContractData().
-              withId(id).withLastname(lastname).withFirstname(firstname).withAllPhones(allPhones).withPrimaryAddress(address).withAllEmails(allEmails));
+      contractCache.add(new ContractData().withFirstname(firstname).withLastname(lastname).withPrimaryAddress(address).withAllPhones(allPhones).withAllEmails(allEmails));
     }
     return new Contracts(contractCache);
   }
 
 
-}
+  public ContractData infoFromViewPage(ContractData contract) {
+    initViewPageById(contract.getId());
+    String contractInfoFromViewPage = wd.findElement(By.xpath("//div[@id='content']")).getText();
+    return new ContractData().withAllViewPageInfo(contractInfoFromViewPage);
+
+}}

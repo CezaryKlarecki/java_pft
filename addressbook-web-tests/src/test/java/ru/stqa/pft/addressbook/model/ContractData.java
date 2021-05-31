@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 
@@ -19,7 +20,24 @@ public class ContractData {
   private String email2;
   private String email3;
   private String allEmails;
+  private String allViewPageInfo;
 
+  public File getPhoto() {
+    return photo;
+  }
+
+  public ContractData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
+
+  private File photo;
+
+
+  public ContractData withAllViewPageInfo(String allViewPageInfo) {
+    this.allViewPageInfo = allViewPageInfo;
+    return this;
+  }
 
   public ContractData withEmail2(String email2) {
     this.email2 = email2;
@@ -94,6 +112,10 @@ public class ContractData {
   public ContractData withGroup(String group) {
     this.group = group;
     return this;
+  }
+
+  public String getAllViewPageInfo() {
+    return allViewPageInfo;
   }
 
   public int getId() {
