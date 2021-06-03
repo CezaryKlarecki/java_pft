@@ -1,21 +1,32 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.File;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
-
+@XStreamAlias("contracts")
 public class ContractData {
+  @XStreamOmitField
   private int id = Integer.MAX_VALUE;
+  @Expose
   private String firstname;
+  @Expose
   private String lastname;
+  @Expose
   private String home;
+  @Expose
   private String mobile;
+  @Expose
   private String work;
   private String group;
   private String allPhones;
   private String allAddresses;
   private String primaryAddress;
   private String secondaryAddress;
+  @Expose
   private String email;
   private String email2;
   private String email3;

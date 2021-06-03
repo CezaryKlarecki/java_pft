@@ -169,7 +169,7 @@ public class ContractHelper extends HelperBase {
       String address = cells.get(3).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String allEmails = cells.get(4).getText();
-      contractCache.add(new ContractData().withFirstname(firstname).withLastname(lastname).withPrimaryAddress(address).withAllPhones(allPhones).withAllEmails(allEmails));
+      contractCache.add(new ContractData().withLastname(lastname).withFirstname(firstname).withPrimaryAddress(address).withAllPhones(allPhones).withAllEmails(allEmails));
     }
     return new Contracts(contractCache);
   }

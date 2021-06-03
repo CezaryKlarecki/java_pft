@@ -1,0 +1,44 @@
+<list>
+  <contracts>
+    <firstname>firstname
+0</firstname>
+    <lastname>lastname
+0</lastname>
+    <home>home
+0</home>
+    <mobile>mobile
+0</mobile>
+    <work>work
+0</work>
+    <email>email
+0</email>
+  </contracts>
+  <contracts>
+    <firstname>firstname
+1</firstname>
+    <lastname>lastname
+1</lastname>
+    <home>home
+1</home>
+    <mobile>mobile
+1</mobile>
+    <work>work
+1</work>
+    <email>email
+1</email>
+  </contracts>
+  <contracts>
+    <firstname>firstname
+2</firstname>
+    <lastname>lastname
+2</lastname>
+    <home>home
+2</home>
+    <mobile>mobile
+2</mobile>
+    <work>work
+2</work>
+    <email>email
+2</email>
+  </contracts>
+</list>
