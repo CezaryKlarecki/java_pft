@@ -79,7 +79,7 @@ public String file;
     System.out.println(new File(".").getAbsolutePath());
     try(Writer writer = new FileWriter(file)) {
       for (ContractData contract : contracts) {
-        writer.write(String.format("%s;%s:%s;%s;%s;%s\n", contract.getLastname()
+        writer.write(String.format("%s;%s:%s;%s;%s;%s", contract.getLastname()
                 , contract.getFirstname(), contract.getHomePhone(), contract.getMobilePhone()
                 , contract.getWorkPhone(), contract.getEmail()));
       }
@@ -90,9 +90,9 @@ public String file;
 
     List<ContractData> contracts = new ArrayList<ContractData>();
     for(int i = 0; i< count; i++){
-      contracts.add(new ContractData().withLastname(String.format("lastname\n%s", i)).withFirstname(String.format("firstname\n%s", i))
-              .withHomePhone(String.format("home\n%s", i)).withMobilePhone(String.format("mobile\n%s", i))
-              .withWorkPhone(String.format("work\n%s", i)).withEmail(String.format("email\n%s", i)));
+      contracts.add(new ContractData().withLastname(String.format("lastname %s", i)).withFirstname(String.format("firstname %s", i))
+              .withHomePhone(String.format("home %s", i)).withMobilePhone(String.format("mobile %s", i))
+              .withWorkPhone(String.format("work %s", i)).withEmail(String.format("email %s", i)));
 
     }
   return contracts;

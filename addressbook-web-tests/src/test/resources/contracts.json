@@ -1,26 +1,26 @@
 [
   {
-    "firstname": "firstname\n0",
-    "lastname": "lastname\n0",
-    "home": "home\n0",
-    "mobile": "mobile\n0",
-    "work": "work\n0",
-    "email": "email\n0"
+    "firstname": "firstname 0",
+    "lastname": "lastname 0",
+    "home": "home 0",
+    "mobile": "mobile 0",
+    "work": "work 0",
+    "email": "email 0"
   },
   {
-    "firstname": "firstname\n1",
-    "lastname": "lastname\n1",
-    "home": "home\n1",
-    "mobile": "mobile\n1",
-    "work": "work\n1",
-    "email": "email\n1"
+    "firstname": "firstname 1",
+    "lastname": "lastname 1",
+    "home": "home 1",
+    "mobile": "mobile 1",
+    "work": "work 1",
+    "email": "email 1"
   },
   {
-    "firstname": "firstname\n2",
-    "lastname": "lastname\n2",
-    "home": "home\n2",
-    "mobile": "mobile\n2",
-    "work": "work\n2",
-    "email": "email\n2"
+    "firstname": "firstname 2",
+    "lastname": "lastname 2",
+    "home": "home 2",
+    "mobile": "mobile 2",
+    "work": "work 2",
+    "email": "email 2"
   }
 ]
