@@ -59,31 +59,31 @@ public String file;
   private void saveAsJson(List<ContractData> contracts, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(contracts);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+   try(Writer writer = new FileWriter(file)){
+    writer.write(json);}
+
   }
 
   private void saveAsXml(List<ContractData> contracts, File file) throws IOException {
     XStream xstream = new XStream();
     xstream.processAnnotations(ContractData.class);
     String xml = xstream.toXML(contracts);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try(Writer writer = new FileWriter(file)) {
+      writer.write(xml);
+    }
 
 
   }
 
   private void saveAsCsv(List<ContractData> contracts, File file) throws IOException {
     System.out.println(new File(".").getAbsolutePath());
-    Writer writer = new FileWriter(file);
-      for(ContractData contract : contracts){
+    try(Writer writer = new FileWriter(file)) {
+      for (ContractData contract : contracts) {
         writer.write(String.format("%s;%s:%s;%s;%s;%s\n", contract.getLastname()
                 , contract.getFirstname(), contract.getHomePhone(), contract.getMobilePhone()
                 , contract.getWorkPhone(), contract.getEmail()));
       }
-      writer.close();
+    }
   }
 
   private List<ContractData> generateContracts(int count) {
