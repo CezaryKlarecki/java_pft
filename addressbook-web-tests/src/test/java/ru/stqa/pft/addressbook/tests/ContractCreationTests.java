@@ -21,6 +21,7 @@ public class ContractCreationTests extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validContractsFromXml() throws IOException {
+
     List<Object[]> list = new ArrayList<Object[]>();
     try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contracts.xml")))) {
       String xml = "";

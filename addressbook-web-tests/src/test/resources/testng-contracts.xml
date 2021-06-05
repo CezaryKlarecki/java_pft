@@ -4,6 +4,8 @@
        <test name="Contracts">
         <classes>
             <class name="ru.stqa.pft.addressbook.tests.ContractCreationTests" />
+            <class name="ru.stqa.pft.addressbook.tests.ContractModificationTests" />
+            <class name="ru.stqa.pft.addressbook.tests.ContractDeletionTests" />
         </classes>
     </test>
 
