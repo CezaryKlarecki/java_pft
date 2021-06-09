@@ -235,14 +235,12 @@ public class ContractData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContractData that = (ContractData) o;
-    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
+    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname) && Objects.equals(home, that.home) && Objects.equals(mobile, that.mobile) && Objects.equals(work, that.work) && Objects.equals(group, that.group) && Objects.equals(primaryAddress, that.primaryAddress) && Objects.equals(email, that.email) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(photo, that.photo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
+    return Objects.hash(id, firstname, lastname, home, mobile, work, group, primaryAddress, email, email2, email3, photo);
   }
-
-
 }
 

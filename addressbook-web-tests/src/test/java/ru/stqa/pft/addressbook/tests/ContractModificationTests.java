@@ -12,7 +12,7 @@ public class ContractModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    if (app.contract().all().size() == 0) {
+    if (app.db().contracts().size() == 0) {
       app.contract().create(new ContractData().withLastname("Cezary").
               withFirstname("Klarecki").withHomePhone("6969955522").withMobilePhone("222").
               withWorkPhone("333").withEmail("ck@fh.pl").withGroup("[none]"));
@@ -21,14 +21,14 @@ public class ContractModificationTests extends TestBase {
 
   @Test
   public void testContractModification() {
-    Contracts before = app.contract().all();
+    Contracts before = app.db().contracts();
     ContractData modifiedContract = before.iterator().next();
     ContractData contract = new ContractData()
             .withId(modifiedContract.getId()).withLastname("Klareckii").withFirstname("Cezary 5")
             .withHomePhone("6969955522").withMobilePhone("333").withWorkPhone("555").withEmail("ck@fh.pl").withGroup("[none]");
     app.contract().modify(contract);
     assertEquals(app.contract().count(), before.size());
-    Contracts after = app.contract().all();
+    Contracts after = app.db().contracts();
     assertThat(after, equalTo(before.without(modifiedContract).withAdded(contract)));
   }
 

@@ -55,11 +55,11 @@ public class ContractCreationTests extends TestBase {
   }
   @Test(dataProvider = "validContractsFromJson")
   public void testContractCreation(ContractData contract) throws Exception {
-    Contracts before = app.contract().all();
+    Contracts before = app.db().contracts();
     File photo = new File("src/test/resources/sru.png");
     app.contract().create(contract);
     assertThat(app.contract().count(), equalTo(before.size() + 1));
-    Contracts after = app.contract().all();
+    Contracts after = app.db().contracts();
     assertThat(after, equalTo(
             before.withAdded(contract.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }

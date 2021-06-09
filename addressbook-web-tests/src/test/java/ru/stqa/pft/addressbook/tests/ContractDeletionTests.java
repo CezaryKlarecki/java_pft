@@ -20,7 +20,7 @@ public class ContractDeletionTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    if (app.contract().all().size() == 0) {
+    if (app.db().contracts().size() == 0) {
       app.contract().create(new ContractData().withLastname("Cezary").
               withFirstname("Klarecki").withHomePhone("6969955522").withMobilePhone("222").
               withWorkPhone("333").withEmail("ck@fh.pl").withGroup("[none]"));
@@ -29,11 +29,11 @@ public class ContractDeletionTests extends TestBase {
 
   @Test
   public void testContractDeletion() {
-    Contracts before = app.contract().all();
+    Contracts before = app.db().contracts();
     ContractData deletedContract = before.iterator().next();
     app.contract().delete(deletedContract);
     assertEquals(app.contract().count(), before.size() - 1);
-    Contracts after = app.contract().all();
+    Contracts after = app.db().contracts();
     assertThat(after, equalTo(before.without(deletedContract)));
   }
 }
