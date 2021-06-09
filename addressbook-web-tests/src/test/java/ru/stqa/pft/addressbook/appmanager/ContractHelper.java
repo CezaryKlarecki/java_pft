@@ -21,7 +21,7 @@ public class ContractHelper extends HelperBase {
   }
 
   public void submitContractCreation() {
-    click(By.xpath("(//input[@name='submit'])[2]"));
+    click(By.name("submit"));
   }
 
   public void fillContractForm(ContractData contractData, boolean creation) {
@@ -36,7 +36,8 @@ public class ContractHelper extends HelperBase {
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contractData.getGroup());
-    } else {
+    }
+    else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
 
@@ -169,7 +170,8 @@ public class ContractHelper extends HelperBase {
       String address = cells.get(3).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String allEmails = cells.get(4).getText();
-      contractCache.add(new ContractData().withLastname(lastname).withFirstname(firstname).withPrimaryAddress(address).withAllPhones(allPhones).withAllEmails(allEmails));
+      contractCache.add(new ContractData().withId(id)
+              .withFirstname(firstname).withLastname(lastname).withPrimaryAddress(address).withAllPhones(allPhones).withAllEmails(allEmails));
     }
     return new Contracts(contractCache);
   }
