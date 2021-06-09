@@ -3,46 +3,78 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 @XStreamAlias("contracts")
+@Entity
+@Table(name ="addressbook")
 public class ContractData {
   @XStreamOmitField
+  @Id
+  @Column(name="id")
   private int id = Integer.MAX_VALUE;
   @Expose
+  @Column(name="firstname")
+  @Type(type ="text")
   private String firstname;
   @Expose
+  @Column(name="lastname")
+  @Type(type ="text")
   private String lastname;
   @Expose
+  @Column(name="home")
+  @Type(type ="text")
   private String home;
   @Expose
+  @Column(name="mobile")
+  @Type(type ="text")
   private String mobile;
   @Expose
+  @Column(name="work")
+  @Type(type ="text")
   private String work;
+  @Transient
   private String group;
+  @Transient
   private String allPhones;
+  @Transient
   private String allAddresses;
+  @Column(name="address")
+  @Type(type ="text")
   private String primaryAddress;
+  @Transient
   private String secondaryAddress;
   @Expose
+  @Column(name="email")
+  @Type(type ="text")
   private String email;
+  @Column(name="email2")
+  @Type(type ="text")
   private String email2;
+  @Column(name="email3")
+  @Type(type ="text")
   private String email3;
+  @Transient
   private String allEmails;
+  @Transient
   private String allViewPageInfo;
+  @Column(name="photo")
+  @Type(type ="mediumtext")
+  private String photo;
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public ContractData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
-  private File photo;
 
 
   public ContractData withAllViewPageInfo(String allViewPageInfo) {
