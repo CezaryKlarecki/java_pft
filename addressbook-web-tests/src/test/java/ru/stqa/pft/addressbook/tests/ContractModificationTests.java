@@ -15,7 +15,7 @@ public class ContractModificationTests extends TestBase {
     if (app.db().contracts().size() == 0) {
       app.contract().create(new ContractData().withLastname("Cezary").
               withFirstname("Klarecki").withHomePhone("6969955522").withMobilePhone("222").
-              withWorkPhone("333").withEmail("ck@fh.pl").withGroup("[none]"));
+              withWorkPhone("333").withEmail("ck@fh.pl"));
     }
   }
 
@@ -25,7 +25,7 @@ public class ContractModificationTests extends TestBase {
     ContractData modifiedContract = before.iterator().next();
     ContractData contract = new ContractData()
             .withId(modifiedContract.getId()).withLastname("Klareckii").withFirstname("Cezary 5")
-            .withHomePhone("6969955522").withMobilePhone("333").withWorkPhone("555").withEmail("ck@fh.pl").withGroup("[none]");
+            .withHomePhone("6969955522").withMobilePhone("333").withWorkPhone("555").withEmail("ck@fh.pl");
     app.contract().modify(contract);
     assertEquals(app.contract().count(), before.size());
     Contracts after = app.db().contracts();

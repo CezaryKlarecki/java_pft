@@ -36,7 +36,7 @@ public class DbHelper {
   public Contracts contracts() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<ContractData> result = session.createQuery("from ContractData where deprecated = '0000-00-00").list();
+    List<ContractData> result = session.createQuery("from ContractData where deprecated='0000-00-00'").list();
     session.getTransaction().commit();
     session.close();
     return new Contracts(result);

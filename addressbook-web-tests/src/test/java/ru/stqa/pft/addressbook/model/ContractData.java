@@ -19,11 +19,11 @@ public class ContractData {
   private int id = Integer.MAX_VALUE;
   @Expose
   @Column(name="firstname")
-  @Type(type ="text")
+
   private String firstname;
   @Expose
   @Column(name="lastname")
-  @Type(type ="text")
+
   private String lastname;
   @Expose
   @Column(name="home")
@@ -64,11 +64,17 @@ public class ContractData {
   private String allViewPageInfo;
   @Column(name="photo")
   @Type(type ="mediumtext")
+  @Transient
   private String photo;
 
   public File getPhoto() {
-    return new File(photo);
+    if (photo != null) {
+      return new File(photo);
+    } else {
+      return null;
+    }
   }
+
 
   public ContractData withPhoto(File photo) {
     this.photo = photo.getPath();
@@ -235,12 +241,12 @@ public class ContractData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContractData that = (ContractData) o;
-    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname) && Objects.equals(home, that.home) && Objects.equals(mobile, that.mobile) && Objects.equals(work, that.work) && Objects.equals(group, that.group) && Objects.equals(primaryAddress, that.primaryAddress) && Objects.equals(email, that.email) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(photo, that.photo);
+    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname) && Objects.equals(home, that.home) && Objects.equals(mobile, that.mobile) && Objects.equals(work, that.work) && Objects.equals(primaryAddress, that.primaryAddress) && Objects.equals(email, that.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname, home, mobile, work, group, primaryAddress, email, email2, email3, photo);
+    return Objects.hash(id, firstname, lastname, home, mobile, work, primaryAddress, email);
   }
 }
 
