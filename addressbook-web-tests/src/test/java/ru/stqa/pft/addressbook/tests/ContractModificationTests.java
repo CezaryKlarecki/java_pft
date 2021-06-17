@@ -30,6 +30,7 @@ public class ContractModificationTests extends TestBase {
     assertEquals(app.contract().count(), before.size());
     Contracts after = app.db().contracts();
     assertThat(after, equalTo(before.without(modifiedContract).withAdded(contract)));
+    verifyContractListInUI();
   }
 
 

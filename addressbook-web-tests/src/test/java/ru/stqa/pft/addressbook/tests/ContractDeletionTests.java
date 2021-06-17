@@ -35,5 +35,7 @@ public class ContractDeletionTests extends TestBase {
     assertEquals(app.contract().count(), before.size() - 1);
     Contracts after = app.db().contracts();
     assertThat(after, equalTo(before.without(deletedContract)));
+    verifyContractListInUI();
+
   }
 }

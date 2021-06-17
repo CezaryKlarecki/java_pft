@@ -62,6 +62,8 @@ public class ContractCreationTests extends TestBase {
     Contracts after = app.db().contracts();
     assertThat(after, equalTo(
             before.withAdded(contract.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+    verifyContractListInUI();
+
   }
 
 
