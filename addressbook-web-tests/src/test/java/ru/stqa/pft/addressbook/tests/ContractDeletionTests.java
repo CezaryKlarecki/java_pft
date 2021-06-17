@@ -23,7 +23,7 @@ public class ContractDeletionTests extends TestBase {
     if (app.db().contracts().size() == 0) {
       app.contract().create(new ContractData().withLastname("Cezary").
               withFirstname("Klarecki").withHomePhone("6969955522").withMobilePhone("222").
-              withWorkPhone("333").withEmail("ck@fh.pl").withGroup("[none]"));
+              withWorkPhone("333").withEmail("ck@fh.pl"));
     }
   }
 

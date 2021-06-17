@@ -34,14 +34,14 @@ public class ContractHelper extends HelperBase {
     type(By.name("email"), contractData.getEmail());
     attach(By.name("photo"), contractData.getPhoto());
 
-    if (creation) {
+   /* if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contractData.getGroup());
     }
     else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
 
-
+*/
   }
 
   public void initCreateContract() {
