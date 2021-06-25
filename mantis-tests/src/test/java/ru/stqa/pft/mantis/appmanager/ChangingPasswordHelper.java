@@ -20,10 +20,11 @@ public class ChangingPasswordHelper extends HelperBase{
     wd.findElement(By.cssSelector("input[value='Reset Password']")).click();
   }
 
-  public void finish(String confirmationLink, String newPassword) {
+  public void finish(String confirmationLink) {
     wd.get(confirmationLink);
+    String newPassword = "password1";
     type(By.name("password"), newPassword);
     type(By.name("password_confirm"), newPassword);
-    click(By.cssSelector("input[value='Update User']"));
+    click(By.cssSelector("input[value='Update Password']"));
   }
 }

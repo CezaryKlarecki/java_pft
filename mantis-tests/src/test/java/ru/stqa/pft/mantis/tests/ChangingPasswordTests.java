@@ -24,12 +24,12 @@ public class ChangingPasswordTests extends TestBase {
     @Test
     public void testChangingPassword() throws IOException, MessagingException {
       String email = "user1@localhost.localdomain";
-
-
-      List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
+      String user = ("user1");
+      List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
       String confirmationLink = findChangingPasswordLink(mailMessages, email);
       app.changingPassword().reset(confirmationLink);
-      app.changingPassword().finish(confirmationLink, newPassword);
+      String newPassword = "password1";
+      app.changingPassword().finish(confirmationLink);
       assertTrue(app.newSession().login(user, newPassword));
     }
 
