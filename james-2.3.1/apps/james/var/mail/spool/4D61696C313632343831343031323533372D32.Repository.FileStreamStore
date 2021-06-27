@@ -1,0 +1,29 @@
+Received: from 0:0:0:0:0:0:0:1 ([0:0:0:0:0:0:0:1])
+          by LAPTOP-L5KF41PD (JAMES SMTP Server 2.3.1) with SMTP ID 879
+          for <root@localhost>;
+          Sun, 27 Jun 2021 19:13:32 +0200 (CEST)
+Date: Sun, 27 Jun 2021 19:13:32 +0200
+Return-Path: <admin@example.com>
+To: root@localhost
+From: Mantis Bug Tracker <noreply@example.com>
+Subject: [MantisBT] Account registration
+Message-ID: <4720e38d55808d1526f311cc1de149b2@localhost>
+X-Priority: 3
+X-Mailer: PHPMailer 5.2.6 (https://github.com/PHPMailer/PHPMailer/)
+Auto-Submitted: auto-generated
+X-Auto-Response-Suppress: All
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+
+
+The following account has been created:
+
+Username: user1624814008277
+E-mail: user1624814008277@localhost.localdomain
+Remote IP address: ::1
+http://localhost:8080/mantisbt-1.2.20/
+
+Do not reply to this message
+
+
