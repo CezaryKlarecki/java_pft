@@ -1,12 +1,10 @@
 package ru.stqa.pft.mantis.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
-import org.testng.junit.JUnit4TestRunner;
 
 import java.io.File;
 import java.io.FileReader;
@@ -24,6 +22,7 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private ChangingPasswordHelper changingPasswordHelper;
   private JamesHelper jamesHelper;
+  private SoapHelper soapHelper;
 
 
   public ApplicationManager(String browser) {
@@ -98,6 +97,11 @@ if(ftp == null) {
     }
     return jamesHelper;
   }
-
+  public SoapHelper soap(){
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+  }
 
 }
