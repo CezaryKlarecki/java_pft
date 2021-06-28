@@ -1,11 +1,9 @@
 package ru.stqa.pft.mantis.tests;
 
-import org.openqa.selenium.By;
-import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
-import ru.stqa.pft.mantis.appmanager.HelperBase;
 import ru.stqa.pft.mantis.model.MailMessage;
 
 import javax.mail.MessagingException;
@@ -23,7 +21,7 @@ public class ChangingPasswordTests extends TestBase {
 
     @Test
     public void testChangingPassword() throws IOException, MessagingException {
-      String email = "user1@localhost.localdomain";
+      String email = "user1@localhost";
       String user = ("user1");
       List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
       String confirmationLink = findChangingPasswordLink(mailMessages, email);
