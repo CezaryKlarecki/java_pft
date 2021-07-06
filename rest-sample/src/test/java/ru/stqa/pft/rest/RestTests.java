@@ -15,7 +15,7 @@ import java.util.Set;
 
 
 
-public class RestTests {
+public class RestTests extends TestBase{
   @Test
   public void testCreateIssue() throws IOException {
     Set<Issue> oldIssues = getIssues();
@@ -40,8 +40,9 @@ public class RestTests {
 
 
   private int createIssue(Issue newIssue) throws IOException {
+    skipIfNotFixed(7350);
     String json = getExecutor().execute(Request.Post("http://demo.bugify.com/api/issues.json")
-            .bodyForm(new BasicNameValuePair("subejct", new Issue().getSubject())
+            .bodyForm(new BasicNameValuePair("subject", new Issue().getSubject())
                     , new BasicNameValuePair("description", new Issue().getDescription())))
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
