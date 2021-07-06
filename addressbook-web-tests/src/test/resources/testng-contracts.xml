@@ -6,6 +6,7 @@
             <class name="ru.stqa.pft.addressbook.tests.ContractCreationTests" />
             <class name="ru.stqa.pft.addressbook.tests.ContractModificationTests" />
             <class name="ru.stqa.pft.addressbook.tests.ContractDeletionTests" />
+            <class name="ru.stqa.pft.addressbook.tests.AddingContractsToGroups" />
         </classes>
     </test>
 

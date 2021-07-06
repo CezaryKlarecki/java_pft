@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContractData;
-import org.testng.*;
 import ru.stqa.pft.addressbook.model.Contracts;
 
 import java.util.List;
@@ -34,14 +34,15 @@ public class ContractHelper extends HelperBase {
     type(By.name("email"), contractData.getEmail());
     attach(By.name("photo"), contractData.getPhoto());
 
-   /* if (creation) {
+
+
+    if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contractData.getGroup());
     }
     else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
 
-*/
   }
 
   public void initCreateContract() {
@@ -82,6 +83,15 @@ public class ContractHelper extends HelperBase {
   public void submitContractModification() {
     click(By.xpath("//div[@id='content']/form/input[22]"));
   }
+
+  public void addToGroup() {
+    wd.findElement(By.name("add")).click();
+  }
+
+  public void goToSelectedGroupPage(int id){
+    wd.findElement(By.cssSelector("a[href='./?group=" + id + "']")).click();
+  }
+
 
   public void initContractDeletion() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));

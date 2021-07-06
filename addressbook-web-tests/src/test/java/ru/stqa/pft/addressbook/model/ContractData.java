@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.PrimitiveIterator;
 import java.util.Set;
 
 @XStreamAlias("contracts")
@@ -232,6 +231,11 @@ private Set<GroupData> groups = new HashSet<GroupData>();
             "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
+            ", home='" + home + '\'' +
+            ", mobile='" + mobile + '\'' +
+            ", work='" + work + '\'' +
+            ", primaryAddress='" + primaryAddress + '\'' +
+            ", email='" + email + '\'' +
             '}';
   }
 
