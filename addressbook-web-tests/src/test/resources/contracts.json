@@ -13,7 +13,8 @@
     "home": "home 1",
     "mobile": "mobile 1",
     "work": "work 1",
-    "email": "email 1"
+    "email": "email 1",
+    "group": "[none]"
   },
   {
     "firstname": "firstname 2",
@@ -21,6 +22,7 @@
     "home": "home 2",
     "mobile": "mobile 2",
     "work": "work 2",
-    "email": "email 2"
+    "email": "email 2",
+    "group": "test 1"
   }
 ]
